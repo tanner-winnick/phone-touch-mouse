@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>Phone Touch Mouse</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body data-token="{{ token }}">
+  <main class="shell">
+    <header>
+      <div>
+        <p class="eyebrow">PHONE TOUCH MOUSE</p>
+        <h1>Touchpad</h1>
+        <p class="sub">Move one finger to move the cursor. Tap to click.</p>
+      </div>
+      <span id="status" class="status offline">Connecting…</span>
+    </header>
+
+    <details class="pairing">
+      <summary>Pair another phone · scan QR code</summary>
+      <div class="pairing-content">
+        <img src="/qr.png?token={{ token }}" alt="QR code for the private phone pairing URL" width="180" height="180">
+        <p>Scan this from a phone connected to the same Wi-Fi network.</p>
+        <code>{{ phone_url }}</code>
+      </div>
+    </details>
+
+    <section id="pad" class="pad" aria-label="Touchpad">
+      <div class="pad-hint">
+        <span class="gesture">☝</span>
+        <strong>Touch and move</strong>
+        <span>Two fingers to scroll</span>
+      </div>
+      <div class="crosshair" aria-hidden="true">＋</div>
+    </section>
+
+    <section class="click-row" aria-label="Mouse buttons">
+      <button id="left-click" class="mouse-button primary">Left click</button>
+      <button id="right-click" class="mouse-button">Right click</button>
+    </section>
+
+    <section class="controls">
+      <label for="speed">Pointer speed <strong id="speed-value">1.2×</strong></label>
+      <input id="speed" type="range" min="0.4" max="2.5" step="0.1" value="1.2">
+      <div class="key-row">
+        <button data-key="escape">Esc</button>
+        <button data-key="tab">Tab</button>
+        <button data-key="enter">Enter</button>
+        <button data-key="space">Space</button>
+      </div>
+    </section>
+
+    <footer>
+      <span>Connected to your computer over local Wi-Fi</span>
+      <a href="/?token={{ token }}">Reconnect</a>
+    </footer>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
